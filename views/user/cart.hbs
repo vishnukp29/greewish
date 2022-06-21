@@ -1,0 +1,116 @@
+<section class="h-100 gradient-custom mt-3">
+  <div class="container py-5">
+    <div class="row d-flex justify-content-center my-4">
+      <div class="col-md-8">
+        <div class="card mb-4">
+          <div class="card-header py-3">
+            <h5 class="mb-0">Cart Items </h5>
+          </div>
+
+          <div class="card-body">
+
+            <!-- Single item -->
+            <div class="row">
+              {{#each products}}
+              {{#each this.cartItems}}
+              <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+
+                <!-- Image -->
+                <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                  <img src="/ProductImages/{{this.pro_Id.allImages.[0]}}" class="w-50 border border-secondary rounded" />
+                  <a href="#!">
+                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+                  </a>
+                </div>
+                <!-- Image -->
+              </div>
+
+              <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                <!-- Data -->
+                <p><strong>{{this.pro_Id.prdName}}</strong></p>
+                <p class="text-muted">{{this.pro_Id.Subcategoryname.Subcategoryname}}</p>
+                
+                <a type="button" class="btn btn-danger btn-sm me-1 mb-2" data-mdb-toggle="tooltip"
+                  title="Remove item" onclick="return confirm('Are You Sure Want to Delete {{this.pro_Id.prdName}}')"
+                  href="/delete-cart_item/{{this.pro_Id._id}}">
+                  <i class="fas fa-trash"></i>
+                </a>
+                
+                <!-- Data -->
+              </div>
+
+              <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                <!-- Quantity -->
+                <div class="d-flex mb-4" >
+                  <button class="btn  px-3 me-2" 
+                    style="height: 35px; width:25px; background-color: rgb(91, 14, 14); color: white;"
+                    onclick="qtyProduct('{{this._id}}','{{this.pro_Id._id}}',-1)">
+                    <i class='fa-solid fa-minus d-flex justify-content-center'></i>
+                  </button>
+
+                  <div class="form-outline">
+                    <input id="{{this.pro_Id._id}}" min="0" name="quantity" value="{{this.quantity}}" type="text"
+                      class="form-control" />
+                  </div>
+
+                  <button class="btn  px-3 ms-2 text-white" 
+                    style="height: 35px; width:25px; background-color: rgb(91, 14, 14); color: white;"
+                    onclick="qtyProduct('{{this._id}}','{{this.pro_Id._id}}',1)">
+                    <i class="fa-solid fa-plus d-flex justify-content-center"></i>
+                  </button>
+                </div>
+                <!-- Quantity -->
+
+                <!-- Price -->
+                <p class="text-start text-md-center">
+                 <span id="price{{this.pro_Id._id}}">₹ {{this.subtotal}}</span>
+                </p>
+                <!-- Price -->
+              </div>
+              <hr class="my-4" />
+              {{/each}}
+              {{/each}}
+            </div>
+            
+            <!-- Single item -->
+          </div>
+        </div>
+
+        
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-4 sticky-top">
+          <div class="card-header py-3">
+            <h5 class="mb-0">Summary</h5>
+          </div>
+          <div class="card-body ">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                Products
+                <span>{{total.grandTotal.total_s}}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                Shipping Charge
+                <span>&#x20b9 {{total.grandTotal.shipp}}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                <div>
+                  <strong>Total amount</strong>
+                </div>
+                <span><strong>₹ {{total.grandTotal.total}}</strong></span>
+               
+              </li>
+            </ul>
+            <div class="d-flex justify-content-center ">
+              <a type="button" class="btn text-white" href="/add-address" style=" background-color: rgb(91, 14, 14); color: white;">
+                Place Order
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+

@@ -1,0 +1,163 @@
+<section class="h-100 gradient-custom mt-3">
+    <div class="container py-5">
+        <form action="" id="checkout-form">
+            <div class="row d-flex justify-content-center my-4">
+                <div class="col-md-8">
+                    <div class="card mb-4">
+                        <div class="card-header py-3">
+                            <h5 class="mb-0">Delivery Address </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-body">
+                                <div class="form-outline mb-3">
+                                    <input type="text" id="form3Example1" class="form-control" placeholder="User's Name"
+                                        name="UsersName" required=" " value="{{address.userAddress.UsersName}}" />
+                                </div>
+
+                                <div class="form-outline mb-3">
+                                    <input type="text" id="form3Example1" class="form-control"
+                                        placeholder="House Name/ House Number" name="HouseName" required=" "
+                                        value="{{address.userAddress.HouseName}}" />
+                                </div>
+
+                                <div class="form-outline mb-3">
+                                    <input type="text" id="form3Example3" class="form-control" placeholder="Place"
+                                        name="Place" required=" " value="{{address.userAddress.Place}}" />
+                                </div>
+
+                                <div class="form-outline mb-3">
+                                    <input type="text" id="form3Example3" class="form-control" placeholder="State"
+                                        name="State" required=" " value="{{address.userAddress.State}}" />
+                                </div>
+
+                                <div class="form-outline mb-3">
+                                    <input type="number" id="form3Example3" class="form-control" placeholder="PIN Code"
+                                        name="Pincode" required=" " value="{{address.userAddress.Pincode}}" />
+                                </div>
+                                <div class="form-outline mb-3">
+                                    <input type="number" id="form3Example4" class="form-control"
+                                        placeholder="Contact Number" name="Contact" required=""
+                                        value="{{address.userAddress.Contact}}" />
+                                </div>
+                                <input type="text" id="" name="UserId" value="{{user._id}}" hidden />
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-header py-3">
+                            <h5 class="mb-0">Total Amount: ₹ {{total.grandTotal.total}} </h5>
+                        </div>
+                        <div class="card-body ">
+                            <ul class="list-group list-group-flush">
+                                <li
+                                    class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                                    <h6>Payment Method</h6>
+                                </li>
+                            </ul>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="PaymentMethod" value="COD"
+                                    id="flexRadioDefault2" />
+                                <label class="form-check-label" for="flexRadioDefault1">Cash On Delivery</label>
+                            </div>
+
+                            <!-- Default checked radio -->
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="PaymentMethod" id="flexRadioDefault2"
+                                    value="Online" checked />
+                                <label class="form-check-label" for="flexRadioDefault2">Online Payment</label>
+                            </div>
+
+
+                            <hr>
+                            <div class="d-flex justify-content-end mt-2">
+                                <button type="submit" class="btn text-white"
+                                    style=" background-color: rgb(91, 14, 14); color: white;">
+                                    Check Out
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+
+<script>
+    $("#checkout-form").submit((e) => {
+        e.preventDefault()
+        $.ajax({
+            
+            url: "/place-order",
+            method: "post",
+            data: $("#checkout-form").serialize(),
+            success:(response)=>{
+                console.log(response)
+                alert(response)
+                if(response.codSuccess){
+                    location.href='/order-success'
+                }else{
+                    razorpayPayment(response)
+                }
+            }
+
+        })
+    })
+
+    function razorpayPayment(order) {
+        var options = {
+            "key": "rzp_test_2ttYWdlwHL9py5", // Enter the Key ID generated from the Dashboard
+            "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "Greewish",
+            "description": "Test Transaction",
+            "image": "https://example.com/your_logo",
+            "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "handler": function (response) {
+                console.log(response,"jhfgjhhghjghgjgjg")
+                verifyPayment(response,order)
+            },
+            "prefill": {
+                "name": "Gaurav Kumar",
+                "email": "gaurav.kumar@example.com",
+                "contact": "9999999999"
+            },
+            "notes": {
+                "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+    }
+
+    function verifyPayment(payment,order) {
+        console.log(payment,order)
+        $.ajax({
+            url: '/verify-payment',
+            data: {
+                payment,
+                order
+            },
+            method: 'post',
+            success: (response) => {
+                if (response.status) {
+                    location.href = '/order-success'
+                }
+                else {
+                    alert('Payment Failed')
+                }
+            }
+        })
+    }
+
+</script>
+
+

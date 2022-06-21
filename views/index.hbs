@@ -1,0 +1,222 @@
+{{!--
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> --}}
+
+<section>
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            {{#each carousel}}
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="/ProductImages/{{this.bannerImages}}" alt="First slide">
+            </div>
+            {{/each }}
+        </div>
+        <button class="carousel-control-prev" type="button"  data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button"  data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </button>
+    </div>
+</section>
+
+
+<section>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <h4 class="text-white mt-2">LATEST PRODUCTS</h4>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-4">
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle btn btn-outline-warning" href="#" id="navbarDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {{#each categories}}
+
+                            <li><a class="dropdown-item "
+                                    href="/product-categories/{{this._id}}">{{this.Categoryname}}</a></li>
+                            {{/each}}
+
+                        </ul>
+
+
+                    </li>
+
+                </ul>
+                <form class="d-flex" action="/search" method="post">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                        name="Search">
+                    <button class="btn btn-outline-warning" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-3 ">
+        <div class="row">
+            {{#each products}}
+            <div class="col-md-3 p-3 d-flex justify-content-center">
+                <div class="card" style="width: 16rem; height:28rem">
+                    <a href="/view-product-details/{{this._id}}"><img src="/ProductImages/{{this.allImages.[0]}}"
+                            class="card-img-top rounded mx-auto d-block p-2" alt="..." style=" height:17rem"></a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{this.prdName}}</h5>
+                        <p class="card-text">Earliest Delivery: {{this.Earliest_Delivery}}</p>
+                        <h5 class="card-text">&#x20b9 {{this.Price}}</h5>
+                        {{!-- <a href="/add-to-cart/{{this._id}}" class="btn btn-primary"><i
+                                class="fa fa-shopping-cart"></i> Add To Cart</a> --}}
+                        <button onclick="addToCart('{{this._id}}')" class="btn btn-primary"><i
+                                class="fa fa-shopping-cart"></i> Add To Cart</button>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</section>
+
+
+<!-- Remove the container if you want to extend the Footer to full width. -->
+<div class=" my-5">
+    <!-- Footer -->
+    <footer class="text-center text-lg-start text-white" style="background-color: #45526e">
+        <!-- Grid container -->
+        <div class="container p-4 pb-0">
+            <!-- Section: Links -->
+            <section class="">
+                <!--Grid row-->
+                <div class="row">
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                        <h6 class="text-uppercase mb-4 font-weight-bold">
+                            GreeWish Limited
+                        </h6>
+                        <p>
+                            Here you can see and buy plants and plant based products.
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <hr class="w-100 clearfix d-md-none" />
+
+                    <!-- Grid column -->
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                        <h6 class="text-uppercase mb-4 font-weight-bold">Products</h6>
+                        <p>
+                            <a class="text-white" style="text-decoration: none;">Plants</a>
+                        </p>
+                        <p>
+                            <a class="text-white" style="text-decoration: none;">Pots</a>
+                        </p>
+                        <p>
+                            <a class="text-white" style="text-decoration: none;">Seeds</a>
+                        </p>
+                        <p>
+                            <a class="text-white" style="text-decoration: none;">Gifts</a>
+                        </p>
+                        <p>
+                            <a class="text-white" style="text-decoration: none;">Tools and Fertilizers</a>
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <hr class="w-100 clearfix d-md-none" />
+
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                        <h6 class="text-uppercase mb-4 font-weight-bold">
+                            Useful links
+                        </h6>
+                        <p>
+                            <a class="text-white" style="text-decoration: none;">Your Account</a>
+                        </p>
+                        <p>
+                            <a class="text-white" style="text-decoration: none;">Become an Affiliate</a>
+                        </p>
+                        <p>
+                            <a class="text-white" style="text-decoration: none;">Shipping Rates</a>
+                        </p>
+                        <p>
+                            <a class="text-white" style="text-decoration: none;">Help</a>
+                        </p>
+                    </div>
+
+                    <!-- Grid column -->
+                    <hr class="w-100 clearfix d-md-none" />
+
+                    <!-- Grid column -->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                        <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+                        <p><i class="fas fa-home mr-3"></i> Tirur, Malappuram, Kerala</p>
+                        <p>PIN- 676 102</p>
+                        <p><i class="fas fa-envelope mr-3"></i> info.greewish@gmail.com</p>
+                        <p><i class="fas fa-phone mr-3"></i> +91 7012 11 84 96</p>
+                        <p><i class="fa-brands fa-whatsapp mr-3"></i> +91 9995 31 68 06</p>
+                    </div>
+                    <!-- Grid column -->
+                </div>
+                <!--Grid row-->
+            </section>
+            <!-- Section: Links -->
+
+            <hr class="my-3">
+
+            <!-- Section: Copyright -->
+            <section class="p-3 pt-0">
+                <div class="row d-flex align-items-center">
+                    <!-- Grid column -->
+                    <div class="col-md-7 col-lg-8 text-center text-md-start">
+                        <!-- Copyright -->
+                        <div class="p-3">
+                            © 2022 Copyright:
+                            <a class="text-white" href="https://greewish.com/">GreeWish.com</a>
+                        </div>
+                        <!-- Copyright -->
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-5 col-lg-4 ml-lg-0 text-center text-md-end">
+                        <!-- Facebook -->
+                        <a class="btn btn-outline-light btn-floating m-1" class="text-white" role="button"><i
+                                class="fab fa-facebook-f"></i></a>
+
+                        <!-- Twitter -->
+                        <a class="btn btn-outline-light btn-floating m-1" class="text-white" role="button"><i
+                                class="fab fa-twitter"></i></a>
+
+                        <!-- Google -->
+                        <a class="btn btn-outline-light btn-floating m-1" class="text-white" role="button" 
+                        href="https://info.greewish@gmail.com"><i class="fab fa-google"></i></a>
+
+                        <!-- Instagram -->
+                        <a class="btn btn-outline-light btn-floating m-1" class="text-white" role="button" 
+                        href="https://www.instagram.com/greewish/"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <!-- Grid column -->
+                </div>
+            </section>
+            <!-- Section: Copyright -->
+        </div>
+        <!-- Grid container -->
+    </footer>
+    <!-- Footer -->
+</div>
+<!-- End of .container -->
+
+
+<script>
+    $(document).ready(function () {
+        $('carousel-item:first-child').addClass('active')
+    })
+</script>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<!-- Designined by CodingLab | www.youtube.com/codinglabyt -->
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <!--<title> Responsiive Admin Dashboard | CodingLab </title>-->
+    <link rel="stylesheet" href="style.css">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="sidebar">
+        <a type="button" class="btn btn-outline-warning mt-5 mx-5" href="/admin/invoice">Invoice</a>
+    </div>
+
+    <section class="home-section mt-5">
+        <nav class="mt-3">
+            <div class="sidebar-button">
+                <i class='bx bx-menu sidebarBtn'></i>
+                <span class="dashboard" style="color:rgb(66, 1, 92) ;"><strong>DASHBOARD</strong></span>
+            </div>
+
+        </nav>
+
+        <div class="home-content mt-3">
+            <div class="overview-boxes">
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic text-primary" >Total Orders</div>
+                        <div class="number">{{ordercount}}</div>
+                    </div>
+                    <i class='bx bx-cart-alt cart'></i>
+
+                </div>
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic text-success" >Total Customers</div>
+                        <div class="number">{{usercount}}</div>
+
+                    </div>
+                    <i class='bx bxs-user-rectangle cart two'></i>
+                </div>
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic text-warning">Total Products</div>
+                        <div class="number">{{productcount}}</div>
+
+                    </div>
+                    <i class='bx bx-cart cart three'></i>
+                </div>
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic text-danger">Total Income</div>
+                        <div class="number">₹ {{totalincome}}</div>
+
+                    </div>
+                    <i class='bx bx-rupee cart four'></i>
+                </div>
+            </div>
+
+            <div class="sales-boxes">
+                <div class="recent-sales box">
+                    <div class="title text-danger"><strong>RECENT SALES</strong></div>
+                    <hr>
+                    <table class="table table-light border rounded border-secondary" style="font-size:12px;">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col">CUSTOMER NAME</th>
+                                <th scope="col">DATE</th>
+                                <th scope="col">PAYMENT METHOD</th>
+                                <th scope="col">PRICE</th>
+                                <th scope="col">ORDER STATUS</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each allorders}}
+                            <tr>
+
+                                <td>{{this.userAddress.UsersName}}</td>
+                                <td>{{this.date}}</td>
+                                <td>{{this.PaymentMethod}}</td>
+                                <td>{{this.totalAmt}}</td>
+                                <td>{{this.status}}</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="top-sales box">
+                    <div class="title text-primary"><strong>GROWTH</strong></div>
+                    <canvas id="doughnutChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".sidebarBtn");
+        sidebarBtn.onclick = function () {
+            sidebar.classList.toggle("active");
+            if (sidebar.classList.contains("active")) {
+                sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+            } else
+                sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+        }
+    </script>
+
+    <script>
+        //doughnut
+        var ctxD = document.getElementById("doughnutChart").getContext('2d');
+        var myLineChart = new Chart(ctxD, {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    data: [{{usercount}},{{ordercount}},{{productcount}}],
+                    backgroundColor: ["#3EC70B", "#46BFBD", "#FDB45C"],
+                    hoverBackgroundColor: ["#3FC70B", "#5AD3D1", "#FFC870"]
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+    </script>
+
+</body>
+
+</html>
+
+
+

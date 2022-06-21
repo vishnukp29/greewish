@@ -1,0 +1,35 @@
+<section class="mt-5">
+    <div class="container mt-5">
+        
+        <table class="table table-light border border-rounded border-secondary">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Place</th>
+                    <th scope="col">Payment Method</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Options</th>
+                    
+
+                </tr>
+            </thead>
+            <tbody>
+                {{#each allorders}}
+                <tr>
+                    
+                    <td>{{this.userAddress.UsersName}}</td>
+                    <td>{{this.userAddress.Place}}</td>
+                    <td>{{this.PaymentMethod}}</td>
+                    <td>{{this.totalAmt}}</td>
+                    <td>{{this.status}}</td>
+                    <td>
+                        <a href="/admin/shipped/{{this._id}}" class="btn btn-success">Shipped</a>
+                        <a href="/admin/delivered/{{this._id}}" class="btn btn-warning">Delivered</a>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</section>
