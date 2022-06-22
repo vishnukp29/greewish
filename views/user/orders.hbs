@@ -9,7 +9,7 @@
                     <th scope="col">Payment Method</th>
                     <th scope="col">Price</th>
                     <th scope="col">Status</th>
-                    <th scope="col">Options</th>
+                    
 
                 </tr>
             </thead>
@@ -22,10 +22,7 @@
                     <td>{{this.PaymentMethod}}</td>
                     <td>{{this.totalAmt}}</td>
                     <td>{{this.status}}</td>
-                    <td>
-                        <a href="/view-product/{{this._id}}" class="btn btn-outline-success">View Product</a>
-                        
-                    </td>
+
                 </tr>
                 {{/each}}
             </tbody>

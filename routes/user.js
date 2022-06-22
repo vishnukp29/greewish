@@ -222,8 +222,10 @@ router.get('/place-order/:id',verifyLogin,async(req,res)=>{
   })
   
   router.post('/place-order',async(req,res)=>{
-    let products=await userHelpers.getCartProductList(req.body.userId)
-    let total=await userHelpers.getTotalPrice(req.body.userId)
+    user=req.session.user
+    console.log(req.body,'Place Order');
+    let products=await userHelpers.getCartProductList(req.body.UserId)
+    let total=await userHelpers.getTotalPrice(req.body.UserId)
 
     console.log('Total....:',total);
     console.log('Products.....',products)
@@ -242,15 +244,10 @@ router.get('/place-order/:id',verifyLogin,async(req,res)=>{
     console.log(req.body,"---bodyyy");
   })
   
-  // router.get('/order-success',async(req,res)=>{
-  //   let user=req.session.user
-  //   res.render('user/order-success',{user:req.session.user,total})    
-  // })
 
   router.get('/orders',verifyLogin,async(req,res)=>{
     let user=req.session.user
-    // let orders=await userHelpers.getCartProductList(req.session.user._id)
-    let orderProduct=await userHelpers.getUserOrder(req.params._id)
+    let orderProduct=await userHelpers.getUserOrder(user._id)
     console.log('Hellooooo'+orderProduct);
     res.render('user/orders',{user,orderProduct})
   })

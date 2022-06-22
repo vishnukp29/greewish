@@ -6,7 +6,7 @@
                     <th scope="col">Name</th>
                     <th scope="col">Phone Number</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Options</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -16,10 +16,7 @@
                     <td>{{this.Name}}</td>
                     <td>{{this.Phone}}</td>
                     <td>{{this.Email}}</td>
-                    <td>
-                        <a href="/admin/block-user/{{this._id}}" class="btn btn-outline-success" onclick="return confirm('Are You Sure Want to Block {{this.Name}}')">Block</a>
-                        
-                    </td>
+                    
                 </tr>
                 {{/each}}
             </tbody>

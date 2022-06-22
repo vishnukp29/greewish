@@ -8,9 +8,10 @@ const nodemailer = require('nodemailer')
 const Product = require('../Model/productschema')
 const Order = require('../Model/orderschema')
 const Razorpay = require('razorpay')
+require('dotenv').config()
 let instance = new Razorpay({
-    key_id: 'rzp_test_2ttYWdlwHL9py5',
-    key_secret: 'qJowZF7afLSoUHWpDlwQaACe',
+    key_id:process.env.RAZORPAY_ID,
+    key_secret:process.env.RAZORPAY_KEY,
 });
 
 const bcrypt = require('bcrypt')
@@ -74,8 +75,8 @@ const sendVerifyMail = async (Name, Email, otpGenerator) => {
             port: 465,
             secure: true,
             auth: {
-                user: "info.greewish@gmail.com",
-                pass: "gqaxseqrzuxaqtkd"
+                user: process.env.NODEMAILER_USER,
+                pass: process.env.NODEMAILER_PASS
             },
             tls: {
                 rejectUnauthorized: false
@@ -653,14 +654,14 @@ module.exports = {
 
                 },
 
-                userId: order.userId,
+                userId: order.UserId,
                 PaymentMethod: order['PaymentMethod'],
                 products: products,
-                totalAmt: total.grandTotal,
+                totalAmt: total.grandTotal.total,
                 status: status
             }
             await Order.create(orderObj).then((response) => { 
-                Cart.deleteOne({user_Id:order.userId}).then((response)=>{
+                Cart.deleteOne({user_Id:order.UserId}).then((response)=>{
                     console.log(response)
                     resolve(response)
                 })
@@ -691,6 +692,8 @@ module.exports = {
     getUserOrder:(userId)=>{
         return new Promise(async(resolve,reject)=>{
             const orderDet= await Order.find({userId:userId}).populate('products').lean()
+            console.log(orderDet,'Orders');
+            console.log(userId,'UserId:');
             resolve(orderDet)
         })
     },
@@ -795,7 +798,7 @@ module.exports = {
     generateRazorpay: (orderId,total) => {
         return new Promise(async(resolve, reject) => {
             let options={
-                amount:total.grandTotal*100, 
+                amount:total.grandTotal.total*100, 
                 currency: "INR",
                 receipt:''+orderId
             }
@@ -817,7 +820,7 @@ module.exports = {
         return new Promise(async(resolve,reject)=>{
             const crypto=require('crypto')
             const { createHmac } = await import('node:crypto');
-            let hash=crypto.createHmac('sha256','qJowZF7afLSoUHWpDlwQaACe')
+            let hash=crypto.createHmac('sha256',process.env.RAZORPAY_KEY)
             hash.update(details['payment[razorpay_order_id]']+'|'+details['payment[razorpay_payment_id]'])
             hash=hash.digest('hex')
             if(hash==details['payment[razorpay_signature]']){

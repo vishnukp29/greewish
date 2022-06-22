@@ -1,4 +1,4 @@
-const { resolve } = require('express-hbs/lib/resolver')
+//const { resolve } = require('express-hbs/lib/resolver')
 const db=require('../Config/configmongo')
 const Product=require('../Model/productschema')
 const Cart=require('../Model/cartschema')

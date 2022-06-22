@@ -1,16 +1,18 @@
 <section id="services" class="services section-bg mt-5">
     <div class="container-fluid mt-5">
         <div class="row row-sm">
+            <h4 class="_p-name">{{product_details.prdName}}</h4>
+            <hr>
             <div class="col-md-6 _boxzoom">
                 <div class="zoom-thumb">
                     <ul class="piclist">
-                        <li><img src="/ProductImages/{{product_details.allImages.[0]}}" alt=""></li>
-                        <li><img src="/ProductImages/{{product_details.allImages.[1]}}" alt=""></li>
+                        <li><img class="border rounded border-secondary" src="/ProductImages/{{product_details.allImages.[0]}}" alt="" ></li>
+                        <li><img class="border rounded border-secondary" src="/ProductImages/{{product_details.allImages.[1]}}" alt=""></li>
                     </ul>
                 </div>
                 <div class="_product-images">
                     <div class="picZoomer">
-                        <img class="my_img" src="/ProductImages/{{product_details.allImages.[0]}}" alt="">
+                        <img class="my_img border rounded border-secondary" src="/ProductImages/{{product_details.allImages.[0]}}" alt="">
                     </div>
                 </div>
             </div>
@@ -19,17 +21,10 @@
                     <p class="_p-name">{{product_details.prdName}}</p>
                     <div class="_p-price-box">
                         <div class="p-list">
-                            <span> M.R.P. : <i class="fa fa-inr"></i> <del> 399 </del> </span>
-                            <span class="price"> ₹. {{product_details.Price}} </span>
+                            
+                            <span class="price">Price: ₹. {{product_details.Price}} </span>
                         </div>
-                        <div class="_p-add-cart">
-                            <div class="_p-qty">
-                                <span>Add Quantity</span>
-                                <div class="value-button decrease_" id="" value="Decrease Value">-</div>
-                                <input type="number" name="qty" id="number" value="1" />
-                                <div class="value-button increase_" id="" value="Increase Value">+</div>
-                            </div>
-                        </div>
+                        
                         <div class="_p-features">
                             <span> Description About {{product_details.prdName}}:- </span>
                            {{product_details.Description}}
@@ -40,6 +35,136 @@
         </div>
     </div>
 </section>
+
+
+<!-- Remove the container if you want to extend the Footer to full width. -->
+<div class=" my-5">
+    <!-- Footer -->
+    <footer class="text-center text-lg-start text-white" style="background-color: #45526e">
+        <!-- Grid container -->
+        <div class="container p-4 pb-0">
+            <!-- Section: Links -->
+            <section class="">
+                <!--Grid row-->
+                <div class="row">
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                        <h6 class="text-uppercase mb-4 font-weight-bold text-warning">
+                            GreeWish Limited
+                        </h6>
+                        <p>
+                            Here you can see and buy plants and plant based products.
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <hr class="w-100 clearfix d-md-none" />
+
+                    <!-- Grid column -->
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                        <h6 class="text-uppercase mb-4 font-weight-bold text-warning">Products</h6>
+                        <p>
+                            <a class="text-white" style="text-decoration: none;">Plants</a>
+                        </p>
+                        <p>
+                            <a class="text-white" style="text-decoration: none;">Pots</a>
+                        </p>
+                        <p>
+                            <a class="text-white" style="text-decoration: none;">Seeds</a>
+                        </p>
+                        <p>
+                            <a class="text-white" style="text-decoration: none;">Gifts</a>
+                        </p>
+                        <p>
+                            <a class="text-white" style="text-decoration: none;">Tools and Fertilizers</a>
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+
+                    <hr class="w-100 clearfix d-md-none" />
+
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                        <h6 class="text-uppercase mb-4 font-weight-bold text-warning">
+                            Developer
+                        </h6>
+                        
+                        <p>
+                            <a class="text-white" style="text-decoration: none;">Vishnu KP</a>
+                        </p>
+                        <p >
+                            vishnukp2529@gmail.com
+                        </p>
+                        <p>
+                            <p><i class="fas fa-phone mr-3"></i> +91 9995 316 806</p>
+                        </p>
+                        <p>
+                            <a class="text-white" href="https://vishnukp29.github.io/vishnukp/" style="text-decoration: none;">Website</a>
+                        </p>
+                    </div>
+
+                    <!-- Grid column -->
+                    <hr class="w-100 clearfix d-md-none" />
+
+                    <!-- Grid column -->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                        <h6 class="text-uppercase mb-4 font-weight-bold text-warning">Contact</h6>
+                        <p><i class="fas fa-home mr-3"></i> Tirur, Malappuram, Kerala</p>
+                        <p>PIN- 676 102</p>
+                        <p><i class="fas fa-envelope mr-3"></i> info.greewish@gmail.com</p>
+                        <p><i class="fas fa-phone mr-3"></i> +91 7012 11 84 96</p>
+                        <p><i class="fa-brands fa-whatsapp mr-3"></i> +91 7012 11 84 96</p>
+                    </div>
+                    <!-- Grid column -->
+                </div>
+                <!--Grid row-->
+            </section>
+            <!-- Section: Links -->
+
+            <hr class="my-3">
+
+            <!-- Section: Copyright -->
+            <section class="p-3 pt-0">
+                <div class="row d-flex align-items-center">
+                    <!-- Grid column -->
+                    <div class="col-md-7 col-lg-8 text-center text-md-start">
+                        <!-- Copyright -->
+                        <div class="p-3">
+                            © 2022 Copyright:
+                            <a class="text-white" href="https://www.greewish.live/">GreeWish.live</a>
+                        </div>
+                        <!-- Copyright -->
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-5 col-lg-4 ml-lg-0 text-center text-md-end">
+                        <!-- Facebook -->
+                        <a class="btn btn-outline-light btn-floating m-1" class="text-white" role="button"><i
+                                class="fab fa-facebook-f"></i></a>
+
+                        <!-- Twitter -->
+                        <a class="btn btn-outline-light btn-floating m-1" class="text-white" role="button"><i
+                                class="fab fa-twitter"></i></a>
+
+                        <!-- Google -->
+                        <a class="btn btn-outline-light btn-floating m-1" class="text-white" role="button" 
+                        href="https://info.greewish@gmail.com"><i class="fab fa-google"></i></a>
+
+                        <!-- Instagram -->
+                        <a class="btn btn-outline-light btn-floating m-1" class="text-white" role="button" 
+                        href="https://www.instagram.com/greewish/"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <!-- Grid column -->
+                </div>
+            </section>
+            <!-- Section: Copyright -->
+        </div>
+        <!-- Grid container -->
+    </footer>
+    <!-- Footer -->
+</div>
+<!-- End of .container -->
 
 
 <script>
