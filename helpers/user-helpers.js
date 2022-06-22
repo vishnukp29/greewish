@@ -14,10 +14,10 @@ let instance = new Razorpay({
     key_secret:process.env.RAZORPAY_KEY,
 });
 
-const bcrypt = require('bcrypt')
-const {
-    resolve
-} = require('express-hbs/lib/resolver')
+ const bcrypt = require('bcrypt')
+// const {
+//     resolve
+// } = require('express-hbs/lib/resolver')
 const {
     collection,
     schema
