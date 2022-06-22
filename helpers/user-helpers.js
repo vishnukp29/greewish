@@ -18,13 +18,13 @@ let instance = new Razorpay({
 // const {
 //     resolve
 // } = require('express-hbs/lib/resolver')
-const {
-    collection,
-    schema
-} = require('../Model/userschema')
-const {
-    response
-} = require('../app')
+// const {
+//     collection,
+//     schema
+// } = require('../Model/userschema')
+// const {
+//     response
+// } = require('../app')
 
 const securePassword = async (Password) => {
     try {
