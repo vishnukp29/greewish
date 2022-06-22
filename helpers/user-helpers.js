@@ -8,7 +8,7 @@ const nodemailer = require('nodemailer')
 const Product = require('../Model/productschema')
 const Order = require('../Model/orderschema')
 const Razorpay = require('razorpay')
-require('dotenv').config()
+require('dotenv').config({debug:true})
 let instance = new Razorpay({
     key_id:process.env.RAZORPAY_ID,
     key_secret:process.env.RAZORPAY_KEY,

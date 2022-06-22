@@ -9,7 +9,7 @@ const bodyParser=require('body-parser')
 const session=require('express-session') 
 const multer=require('multer')
 const nodemailer=require('nodemailer')
-
+require('dotenv').config({debug:true})
 const  config=require('./Config/configmongo')
 const productschema=require('./Model/productschema')
 const userschema=require('./Model/userschema')
