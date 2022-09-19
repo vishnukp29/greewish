@@ -54,6 +54,8 @@ Users can do the following:
 
 - Login and signup with OTP verification using nodemailer.
 - Through otp verification, the user can manage forgotten passwords.
+- Users can change their password and set a new one.
+- Users can change their address and personal info.
 - Products can be viewed from landing page with categories and Offer price.
 - User can Add product to cart.
 - User can view single product details.
@@ -62,6 +64,7 @@ Users can do the following:
 - Category wise render of all products.
 - Payment Gateway is integrated with RAZOR PAY.
 - The user can cancel the purchased products and the payment is refundable
+- User can see the purchase/order history.
 - Users can download an invoice of the orders
 
 Admins can do the following:
@@ -71,7 +74,10 @@ Admins can do the following:
 - Admin can handle user block , unblock and delete.
 - Can add product and change product details.
 - Can add category and sub categories.
-- Admin can manage order details and product details.
+- Admin can change the user order status (Confirmed, Delivered).
+-  Admin can cancel user orders if it’s pending (status)
+
+
 
 ## License
 
