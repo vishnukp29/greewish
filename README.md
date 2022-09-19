@@ -84,4 +84,4 @@ Admins can do the following:
 [![License](https://img.shields.io/:License-MIT-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
 - MIT License
-- Copyright 2022 © [ABDUL AZEEZ TP](https://github.com/AbdulAzeez002)
+- Copyright 2022 © [VISHNU KP](https://github.com/vishnukp29)
